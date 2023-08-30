@@ -33,13 +33,13 @@ class StudentController extends Controller
   }
 
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Student $student)
-    {
-        return view('students.show', compact('student'));
-    }
+  /**
+   * Display the specified resource.
+   */
+  public function show(Student $student)
+  {
+    return view('students.show', compact('student'));
+  }
 
 
   /**
@@ -70,5 +70,15 @@ class StudentController extends Controller
     Student::destroy($id);
 
     return to_route('students.index');
+  }
+
+
+  /**
+   * Show trashed students
+   */
+  public function trash()
+  {
+    $students = [];
+    return view('students.trash', compact('students'));
   }
 }
