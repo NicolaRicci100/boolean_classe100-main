@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 
 class StudentController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      */
@@ -98,4 +99,15 @@ class StudentController extends Controller
 
         return to_route('students.index');
     }
+
+
+  /**
+   * Show trashed students
+   */
+  public function trash()
+  {
+    $students = Student::onlyTrashed()->get();
+    return view('students.trash', compact('students'));
+  }
+
 }
