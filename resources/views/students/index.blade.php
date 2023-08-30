@@ -2,6 +2,12 @@
 
 
 @section('main')
+    @if (session('alert-message'))
+        <div class="alert alert-{{ session('alert-type') }}">
+            {{ session('alert-message') }}
+        </div>
+    @endif
+
     <div class="d-flex my-4 gap-5 align-items-center ">
         <a class="btn btn-outline-primary" href="{{ route('students.create') }}">Aggiungi studente</a>
         <form method="GET" action="{{ route('students.index') }}" class="d-flex mb-3 align-items-end ">
