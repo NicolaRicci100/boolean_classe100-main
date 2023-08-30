@@ -5,17 +5,23 @@
     <div class="d-flex my-4">
         <a class="btn btn-outline-primary" href="{{ route('students.create') }}">Aggiungi studente</a>
     </div>
-    <ul>
+    <section class="row row-cols-3">
         @foreach ($students as $student)
-            <li class="mt-3"><strong>Nome:</strong> {{ $student->first_name }}</li>
-            <li><strong>Cognome:</strong> {{ $student->last_name }}</li>
-            <li><strong>Età:</strong> {{ $student->age }}</li>
-            <a class="btn btn-outline-success" href="{{ route('students.edit', $student) }}">Modifica</a>
-            <form  method="POST" action="{{ route('students.destroy', $student) }}">
-                @method('DELETE')
-                @csrf
-                <button class="btn btn-outline-danger">Distruggi</button>
-            </form>
+            <div class="card col" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title">{{ $student->first_name }} {{ $student->last_name }}</h5>
+                    <h6 class="card-subtitle mb-2 text-body-secondary">Età:</strong> {{ $student->age }}</h6>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                        card's
+                        content.</p>
+                    <a class="btn btn-outline-success" href="{{ route('students.edit', $student) }}">Modifica</a>
+                    <form method="POST" action="{{ route('students.destroy', $student) }}">
+                        @method('DELETE')
+                        @csrf
+                        <button class="btn btn-outline-danger">Distruggi</button>
+                    </form>
+                </div>
+            </div>
         @endforeach
-    </ul>
+    </section>
 @endsection
