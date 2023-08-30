@@ -32,13 +32,15 @@ class StudentController extends Controller
     //
   }
 
-  /**
-   * Display the specified resource.
-   */
-  public function show(Student $student)
-  {
-    //
-  }
+
+    /**
+     * Display the specified resource.
+     */
+    public function show(Student $student)
+    {
+        return view('students.show', compact('student'));
+    }
+
 
   /**
    * Show the form for editing the specified resource.
