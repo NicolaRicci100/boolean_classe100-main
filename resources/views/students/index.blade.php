@@ -15,7 +15,11 @@
                         card's
                         content.</p>
                     <a class="btn btn-outline-success" href="{{ route('students.edit', $student) }}">Modifica</a>
-                    <a class="btn btn-outline-danger" href="{{ route('students.destroy', $student) }}">Distruggi</a>
+                    <form method="POST" action="{{ route('students.destroy', $student) }}">
+                        @method('DELETE')
+                        @csrf
+                        <button class="btn btn-outline-danger">Distruggi</button>
+                    </form>
                 </div>
             </div>
         @endforeach
