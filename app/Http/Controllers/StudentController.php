@@ -10,9 +10,12 @@ class StudentController extends Controller
   /**
    * Display a listing of the resource.
    */
-  public function index()
+  public function index(Request $request)
   {
-    $students = Student::all();
+    if ($request->exists('search')) {
+      $search = $request->get('search');
+      $students = Student::where('first_name', 'LIKE', '%' . $search . '%')->get();
+    } else $students = Student::all();
     return view('students.index', compact('students'));
   }
 
@@ -33,13 +36,13 @@ class StudentController extends Controller
   }
 
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Student $student)
-    {
-        return view('students.show', compact('student'));
-    }
+  /**
+   * Display the specified resource.
+   */
+  public function show(Student $student)
+  {
+    return view('students.show', compact('student'));
+  }
 
 
   /**
