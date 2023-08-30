@@ -9,8 +9,13 @@
     <section class="row row-cols-3">
         @foreach ($students as $student)
             <div class="card col m-2" style="width: 18rem;">
-                <div class="card-body">
+                <div class="card-body d-flex justify-content-between">
                     <h5 class="card-title">{{ $student->getFullName() }}</h5>
+                    <form method="POST" action="{{ route('student.restore', $student) }}">
+                        @csrf
+                        @method('PATCH')
+                        <button class="btn btn-sm btn-success">Ripristina</button>
+                    </form>
                 </div>
             </div>
         @endforeach

@@ -19,4 +19,6 @@ Route::get('/', function () {
 });
 
 Route::get('/students/trash', [StudentController::class, 'trash'])->name('students.trash'); //rotta per il cestino
+
 Route::resource('students', StudentController::class);
+Route::patch('/students/{student}/restore', [StudentController::class, 'restore'])->name('student.restore');
