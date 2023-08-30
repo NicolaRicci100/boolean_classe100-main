@@ -40,7 +40,7 @@
                         <a class="btn btn-outline-info" href="{{ route('students.show', $student) }}">Info</a>
                         <a class="btn btn-outline-success" href="{{ route('students.edit', $student) }}">Modifica</a>
                     </div>
-                    <form class="ms-2 destroy-form" method="POST" action="{{ route('students.destroy', $student) }}"
+                    <form class="destroy-form" method="POST" action="{{ route('students.destroy', $student) }}"
                         data-name="{{ $student->getFullName() }}">
                         @method('DELETE')
                         @csrf
