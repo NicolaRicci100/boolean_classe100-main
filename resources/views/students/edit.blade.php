@@ -21,7 +21,7 @@
             <input type="text" class="form-control @error('last_name') is-invalid @enderror" id="last-name" name="last_name" value="{{ $student->last_name }}">
             {{-- error message --}}
             @error('last_name')
-                 <div id="first-nameFeedback" class="invalid-feedback">
+                 <div id="last-nameFeedback" class="invalid-feedback">
                     Cognome non valido
                 </div>
             @enderror
@@ -31,8 +31,8 @@
             <input type="number" class="form-control @error('age') is-invalid @enderror" id="age" name="age" value="{{ $student->age }}">
             {{-- error message --}}
             @error('age')
-                 <div id="first-nameFeedback" class="invalid-feedback">
-                    Età non valido
+                 <div id="ageFeedback" class="invalid-feedback">
+                    Età non valida
                 </div>
             @enderror
         </div>
