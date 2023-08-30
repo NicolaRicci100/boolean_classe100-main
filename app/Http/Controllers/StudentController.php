@@ -10,9 +10,12 @@ class StudentController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $students = Student::all();
+        if ($request->exists('search')) {
+            $search = $request->get('search');
+            $students = Student::where('first_name', 'LIKE', '%' . $search . '%')->get();
+        } else $students = Student::all();
         return view('students.index', compact('students'));
     }
 
@@ -80,5 +83,12 @@ class StudentController extends Controller
         return to_route('students.index')
             ->with('alert-type', 'success')
             ->with('alert-message', "Lo studende  $student->last_name è stato Cancellato");
+    }
+
+
+    public function trash()
+    {
+        $students = Student::onlyTrashed()->get();
+        return view('students.trash', compact('students'));
     }
 }

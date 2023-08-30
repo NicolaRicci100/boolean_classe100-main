@@ -8,8 +8,18 @@
         </div>
     @endif
 
-    <div class="d-flex my-4">
+    <div class="d-flex my-4 gap-5 align-items-center ">
         <a class="btn btn-outline-primary" href="{{ route('students.create') }}">Aggiungi studente</a>
+        <form method="GET" action="{{ route('students.index') }}" class="d-flex mb-3 align-items-end ">
+
+            @csrf
+            <div>
+                <label for="search" class="form-label">Cerca uno o più studenti</label>
+                <input type="text" class="form-control" id="search" name="search">
+            </div>
+            <button class="btn btn-primary ms-3">Cerca</button>
+            <button class="btn btn-warning ms-3">Ripristina Filtri</button>
+        </form>
     </div>
     <section class="row row-cols-3">
         @foreach ($students as $student)
