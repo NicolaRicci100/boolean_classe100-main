@@ -4,11 +4,11 @@
 {{-- card --}}
 <div class="card mt-4">
     <div class="card-header">
-        <h5 class="card-title text-center">{{$student->first_name}} {{$student->last_name}}</h5>
+        <h5 class="card-title text-center">{{ $student->getFullName() }}</h5>
       </div>
     <div class="card-body">
       <p class="card-text">
-            {{$student->first_name}} {{$student->last_name}} è uno studente della classe 100 di Boolean. <br>
+        {{ $student->getFullName() }} è uno studente della classe 100 di Boolean. <br>
             {{$student->first_name}} ha {{$student->age}} anni.
         </p>
         <hr>
