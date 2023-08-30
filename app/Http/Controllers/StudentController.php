@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 class StudentController extends Controller
 {
 
+
     /**
      * Display a listing of the resource.
      */
@@ -40,16 +41,14 @@ class StudentController extends Controller
             'age' => ['nullable', 'numeric', 'min:6', 'max:30'],
 
         ]);
-
         $data = $request->all();
-
         $student = new Student();
-
         $student->fill($data);
-
         $student->save();
 
-        return to_route('students.index');
+        return to_route('students.index')->with('alert-type', 'success')
+            ->with('alert-message', "Lo studende  $student->last_name è stato Inserito");;
+
     }
 
 
@@ -76,6 +75,8 @@ class StudentController extends Controller
     public function update(Request $request, Student $student)
     {
 
+
+
         $request->validate([
             'first_name' => ['required', 'string'],
             'last_name' => ['required', 'string'],
@@ -83,31 +84,37 @@ class StudentController extends Controller
 
         ]);
 
+
         $data = $request->all();
 
         $student->update($data);
 
-        return to_route('students.index');
+
+        return to_route('students.index')->with('alert-type', 'success')
+            ->with('alert-message', "Lo studende  $student->last_name è stato Modificato ");;
+
+
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
-    {
-        Student::destroy($id);
 
-        return to_route('students.index');
+    public function destroy(Student $student)
+    {
+        $student->delete();
+
+        return to_route('students.index')
+            ->with('alert-type', 'success')
+            ->with('alert-message', "Lo studende  $student->last_name è stato Cancellato");
     }
 
 
-  /**
-   * Show trashed students
-   */
-  public function trash()
-  {
-    $students = Student::onlyTrashed()->get();
-    return view('students.trash', compact('students'));
-  }
+    public function trash()
+    {
+        $students = Student::onlyTrashed()->get();
+        return view('students.trash', compact('students'));
+    }
 
+   
 }
