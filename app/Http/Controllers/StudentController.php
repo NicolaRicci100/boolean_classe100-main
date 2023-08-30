@@ -59,8 +59,10 @@ class StudentController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Student $student)
+    public function destroy(string $id)
     {
-        //
+        Student::destroy($id);
+
+        return to_route('students.index');
     }
 }

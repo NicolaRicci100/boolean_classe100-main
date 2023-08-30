@@ -11,7 +11,11 @@
             <li><strong>Cognome:</strong> {{ $student->last_name }}</li>
             <li><strong>Età:</strong> {{ $student->age }}</li>
             <a class="btn btn-outline-success" href="{{ route('students.edit', $student) }}">Modifica</a>
-            <a class="btn btn-outline-danger" href="{{ route('students.destroy', $student) }}">Distruggi</a>
+            <form  method="POST" action="{{ route('students.destroy', $student) }}">
+                @method('DELETE')
+                @csrf
+                <button class="btn btn-outline-danger">Distruggi</button>
+            </form>
         @endforeach
     </ul>
 @endsection
