@@ -2,6 +2,12 @@
 
 
 @section('main')
+    @if (session('alert-message'))
+        <div class="alert alert-{{ session('alert-type') }}">
+            {{ session('alert-message') }}
+        </div>
+    @endif
+
     <div class="d-flex my-4">
         <a class="btn btn-outline-primary" href="{{ route('students.create') }}">Aggiungi studente</a>
     </div>
@@ -11,7 +17,8 @@
                 <div class="card-body">
                     <h5 class="card-title">{{ $student->first_name }} {{ $student->last_name }}</h5>
                     <h6 class="card-subtitle mb-2 text-body-secondary">Età:</strong> {{ $student->age }}</h6>
-                    <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias facilis odit illo
+                    <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias facilis odit
+                        illo
                         provident quidem error consectetur</p>
                     <a class="btn btn-outline-success" href="{{ route('students.edit', $student) }}">Modifica</a>
                     <form class="d-inline ms-2" method="POST" action="{{ route('students.destroy', $student) }}">
