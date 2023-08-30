@@ -10,7 +10,7 @@
         @foreach ($students as $student)
             <div class="card col m-2" style="width: 18rem;">
                 <div class="card-body">
-                    <h5 class="card-title">{{ $student->first_name }} {{ $student->last_name }}</h5>
+                    <h5 class="card-title">{{ $student->getFullName() }}</h5>
                 </div>
             </div>
         @endforeach

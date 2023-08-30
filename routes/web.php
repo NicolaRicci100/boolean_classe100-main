@@ -18,5 +18,5 @@ Route::get('/', function () {
     return view('home');
 });
 
-Route::resource('students', StudentController::class);
 Route::get('/students/trash', [StudentController::class, 'trash'])->name('students.trash'); //rotta per il cestino
+Route::resource('students', StudentController::class);
