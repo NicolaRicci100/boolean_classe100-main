@@ -82,4 +82,14 @@ class StudentController extends Controller
 
     return to_route('students.index');
   }
+
+
+  /**
+   * Show trashed students
+   */
+  public function trash()
+  {
+    $students = Student::onlyTrashed()->get();
+    return view('students.trash', compact('students'));
+  }
 }
