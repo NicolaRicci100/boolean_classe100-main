@@ -8,8 +8,12 @@
         </div>
     @endif
 
-    <div class="d-flex my-4 gap-5 align-items-center ">
+    <div class="d-flex justify-content-between my-4 gap-5 align-items-center ">
+
+        {{-- # Bootne per aggiungere uno studente --}}
         <a class="btn btn-outline-primary" href="{{ route('students.create') }}">Aggiungi studente</a>
+
+        {{-- # Form per la searchbar --}}
         <form method="GET" action="{{ route('students.index') }}" class="d-flex mb-3 align-items-end ">
 
             @csrf
@@ -20,6 +24,8 @@
             <button class="btn btn-primary ms-3">Cerca</button>
             <button class="btn btn-warning ms-3">Ripristina Filtri</button>
         </form>
+        {{-- # Bottone per il cestino --}}
+        <a class="btn btn-outline-secondary" href="{{ route('students.trash') }}">Vai al cestino</a>
     </div>
     <section class="row row-cols-3">
         @foreach ($students as $student)
@@ -30,9 +36,12 @@
                     <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias facilis odit
                         illo
                         provident quidem error consectetur</p>
-                    <a class="btn btn-outline-success" href="{{ route('students.edit', $student) }}">Modifica</a>
-                    <form class="d-inline ms-2 destroy-form" method="POST"
-                        action="{{ route('students.destroy', $student) }}" data-name="{{ $student->getFullName() }}">
+                    <div class="my-3">
+                        <a class="btn btn-outline-info" href="{{ route('students.show', $student) }}">Info</a>
+                        <a class="btn btn-outline-success" href="{{ route('students.edit', $student) }}">Modifica</a>
+                    </div>
+                    <form class="ms-2 destroy-form" method="POST" action="{{ route('students.destroy', $student) }}"
+                        data-name="{{ $student->getFullName() }}">
                         @method('DELETE')
                         @csrf
                         <button class="btn btn-outline-danger">Distruggi</button>
