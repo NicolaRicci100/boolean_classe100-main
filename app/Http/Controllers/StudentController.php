@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 
 class StudentController extends Controller
 {
+
+
     /**
      * Display a listing of the resource.
      */
@@ -33,6 +35,12 @@ class StudentController extends Controller
     public function store(Request $request)
     {
 
+        $request->validate([
+            'first_name' => ['required', 'string'],
+            'last_name' => ['required', 'string'],
+            'age' => ['nullable', 'numeric', 'min:6', 'max:30'],
+
+        ]);
         $data = $request->all();
         $student = new Student();
         $student->fill($data);
@@ -40,6 +48,7 @@ class StudentController extends Controller
 
         return to_route('students.index')->with('alert-type', 'success')
             ->with('alert-message', "Lo studende  $student->last_name è stato Inserito");;
+
     }
 
 
@@ -65,17 +74,32 @@ class StudentController extends Controller
      */
     public function update(Request $request, Student $student)
     {
+
+
+
+        $request->validate([
+            'first_name' => ['required', 'string'],
+            'last_name' => ['required', 'string'],
+            'age' => ['nullable', 'numeric', 'min:6', 'max:30'],
+
+        ]);
+
+
         $data = $request->all();
 
         $student->update($data);
 
+
         return to_route('students.index')->with('alert-type', 'success')
             ->with('alert-message', "Lo studende  $student->last_name è stato Modificato ");;
+
+
     }
 
     /**
      * Remove the specified resource from storage.
      */
+
     public function destroy(Student $student)
     {
         $student->delete();
@@ -91,4 +115,6 @@ class StudentController extends Controller
         $students = Student::onlyTrashed()->get();
         return view('students.trash', compact('students'));
     }
+
+   
 }
